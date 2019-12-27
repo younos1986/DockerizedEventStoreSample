@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  eventstoresample: 
+    image: eventstoresample
+    build:
+      context: .
+      dockerfile: EventStoreSample/Dockerfile
+    networks:
+      clusternetwork:
+        ipv4_address: 172.16.0.12
+
+  eventstore: 
+    image: eventstore/eventstore
+    environment:
+      - EVENTSTORE_INT_IP=172.16.0.13
+      - EVENTSTORE_EXT_HTTP_PORT=2113
+      - EVENTSTORE_EXT_TCP_PORT=1113
+      - EVENTSTORE_EXT_HTTP_PREFIXES=http://*:2113/
+    ports:
+      - "1113:1113"
+      - "2113:2113"
+    networks:
+      clusternetwork:
+        ipv4_address: 172.16.0.13
+
+networks:
+  clusternetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.0.0/24
