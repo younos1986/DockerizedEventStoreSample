@@ -2,6 +2,11 @@
 
 ### how to use bridge driver network in docker to communicate between two containers.
 
+resources : 
+<a href='https://www.docker.com/blog/understanding-docker-networking-drivers-use-cases/'> Understanding Docker Networking Drivers and their use cases  </a>
+
+
+
 ```
 
 version: '3.4'
