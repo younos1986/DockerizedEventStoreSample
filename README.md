@@ -50,10 +50,10 @@ networks:
 ```
 
 
-This project is creating two containers
+This project creates two containers
 
-first: eventstoresample API which can communicate with event store container
-second: event store 
+first: eventstoresample API which can communicate with event store 
+second: the container which hosts EvenStore 
 
 
 How to test: 
