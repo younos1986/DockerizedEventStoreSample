@@ -25,5 +25,6 @@ namespace EventStoreSample
         
         // this line is added by user in github editor
         // this line is added by user in github editor 2
+        // this line is added by user in github editor 3
     }
 }
