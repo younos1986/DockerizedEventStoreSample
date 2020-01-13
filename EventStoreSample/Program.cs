@@ -24,11 +24,12 @@ namespace EventStoreSample
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
-        
+
         // this line is added by user in github editor
         // this line is added by user in github editor 2
         // this line is added by user in github editor 3
         // this line is added by user in github editor 4
         // this line is added by user in github editor 5
+        // this line is added by user in github editor 6
     }
 }
