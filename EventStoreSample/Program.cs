@@ -17,6 +17,8 @@ namespace EventStoreSample
             CreateWebHostBuilder(args).Build().Run();
         }
 
+        // feature barnch 1 is added
+
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
