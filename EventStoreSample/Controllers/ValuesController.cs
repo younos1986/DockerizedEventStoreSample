@@ -10,11 +10,21 @@ namespace EventStoreSample.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        static string serverName = string.Empty;
+
+        public ValuesController()
+        {
+            if (string.IsNullOrEmpty(serverName))
+                serverName = "Server " + new Random().Next(int.MaxValue).ToString();
+        }
+
+        
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { serverName , "value2" };
         }
 
         // GET api/values/5

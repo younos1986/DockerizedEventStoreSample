@@ -12,6 +12,7 @@ services:
 
   eventstore: 
     image: eventstore/eventstore
+    container_name: "es"
     environment:
       - EVENTSTORE_INT_IP=172.16.0.13
       - EVENTSTORE_EXT_HTTP_PORT=2113
@@ -23,6 +24,18 @@ services:
     networks:
       clusternetwork:
         ipv4_address: 172.16.0.13
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test
+    ports:
+      - "27014:27017"
+    networks:
+      clusternetwork:
+        ipv4_address: 172.16.0.14
 
 networks:
   clusternetwork:

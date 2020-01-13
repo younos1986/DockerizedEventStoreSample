@@ -7,7 +7,7 @@ namespace EventStoreSample.Dto
 {
     public class CustomerDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string FirstName { get; set; }
 

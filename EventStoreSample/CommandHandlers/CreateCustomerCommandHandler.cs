@@ -7,6 +7,7 @@ using Domain;
 using EventStoreSample.Commands;
 using EventStoreSample.Dto;
 using EventStoreSample.Events;
+using EventStoreSample.MongoDbConfigs;
 using MediatR;
 
 namespace EventStoreSample.CommandHandlers
@@ -14,23 +15,27 @@ namespace EventStoreSample.CommandHandlers
     public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerDto>
     {
         readonly IMediator _mediator;
-
+        private readonly IMongoDb _mongoDb;
         public CreateCustomerCommandHandler(
-            IMediator mediator)
+            IMediator mediator,
+            IMongoDb mongoDb)
         {
             _mediator = mediator;
+            _mongoDb = mongoDb;
         }
 
         public async Task<CustomerDto> Handle(CreateCustomerCommand createCustomerCommand, CancellationToken cancellationToken)
         {
             Domain.Customer customer = new Customer()
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 FirstName = createCustomerCommand.FirstName,
                 LastName = createCustomerCommand.LastName,
                 CreatedOn = DateTime.Now
 
             };
+
+            await _mongoDb.InsertOneAsync(customer);
 
             // Raising Event ...
             await _mediator.Publish(new CustomerCreatedEvent(customer.FirstName, customer.LastName, customer.CreatedOn), cancellationToken);
