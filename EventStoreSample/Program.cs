@@ -18,6 +18,8 @@ namespace EventStoreSample
         }
 
         // feature barnch 1 is added
+        // feature barnch 1 is added 2
+        // feature barnch 1 is added 3
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
