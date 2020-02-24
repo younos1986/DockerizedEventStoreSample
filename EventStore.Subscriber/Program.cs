@@ -45,8 +45,8 @@ namespace EventStore.Subscriber
             var settings = ConnectionSettings.Create(); //.EnableVerboseLogging().UseConsoleLogger();
 
             //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Loopback, DEFAULTPORT)))
-            //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Parse("172.16.0.13"), DEFAULTPORT)))
-            using (_conn = EventStoreConnection.Create(settings, "eventstore:1113"))
+            using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Parse("172.16.0.13"), DEFAULTPORT)))
+            //using (_conn = EventStoreConnection.Create(settings, "eventstore:1113"))
             
             {
                 _conn.ConnectAsync().Wait();

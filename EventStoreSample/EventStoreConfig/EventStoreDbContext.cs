@@ -13,8 +13,8 @@ namespace EventStoreSample.EventStoreConfig
         public async Task<IEventStoreConnection> GetConnection()
         {
             IEventStoreConnection connection = EventStoreConnection.Create(
-                "eventstore:1113",
-                //new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113),
+                //"eventstore:1113",
+                new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113),
                 //new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1113),
                 nameof(EventStoreSample));
 
