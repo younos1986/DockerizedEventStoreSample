@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EventStoreSample.MongoDbConfigs
+namespace EventStore.Subscriber.MongoDbConfigs
 {
     public interface IMongoDb
     {

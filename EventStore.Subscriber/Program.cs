@@ -1,5 +1,8 @@
-﻿using EventStore.ClientAPI;
+﻿using Domain;
+using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
+using EventStore.Subscriber.MongoDbConfigs;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net;
@@ -43,15 +46,9 @@ namespace EventStore.Subscriber
 
         public void Start()
         {
-            //uncommet to enable verbose logging in client.
-            //var settings = ConnectionSettings.Create(); //.EnableVerboseLogging().UseConsoleLogger();
-
             //var ip = Dns.GetHostAddresses("eventstore").Where(a => a.AddressFamily == AddressFamily.InterNetwork).First();
             //var connectionString = $"ConnectTo=tcp://admin:changeit@{ip}:1113";
 
-            //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Loopback, DEFAULTPORT)))
-            //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(ip, DEFAULTPORT)))
-            //using (_conn = EventStoreConnection.Create(settings, connectionString))
             using (_conn = EventStoreConnection.Create("ConnectTo=tcp://admin:changeit@eventstore:1113"))
             {
                 _conn.ConnectAsync().Wait();
@@ -89,7 +86,10 @@ namespace EventStore.Subscriber
             Console.WriteLine(data);
 
 
-            //await _mongoDb.InsertOneAsync(customer);
+
+            Customer customer = JsonConvert.DeserializeObject<Customer>(data);
+            MongoDb _mongoDb = new MongoDb();
+            _mongoDb.InsertOneAsync(customer).GetAwaiter().GetResult();
         }
 
         /*

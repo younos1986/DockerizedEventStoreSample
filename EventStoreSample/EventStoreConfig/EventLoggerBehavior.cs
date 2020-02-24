@@ -41,7 +41,7 @@ namespace EventStoreSample.EventStoreConfig
                     }
                 };
 
-                string jsonData = JsonConvert.SerializeObject(data);
+                string jsonData = JsonConvert.SerializeObject(response);
                 byte[] dataBytes = Encoding.UTF8.GetBytes(jsonData);
 
                 EventData eventData = new EventData(eventId: Guid.NewGuid(),
