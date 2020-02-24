@@ -8,8 +8,8 @@ namespace EventStoreSample.MongoDbConfigs
     {
         private IMongoCollection<T> GetCollection<T>()
         {
-            var server = new MongoServerAddress(host: "172.16.0.14", port: 27017);
-            //var server = new MongoServerAddress(host: "localhost", port: 27014);
+            //var server = new MongoServerAddress(host: "172.16.0.14", port: 27017);
+            var server = new MongoServerAddress(host: "localhost", port: 27014);
             var credentials = MongoCredential.CreateCredential(
                 databaseName: "admin",
                 username: "test",

@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+  eventstoressubscriber: 
+    image: eventstoressubscriber
+    build:
+      context: .
+      dockerfile: EventStore.Subscriber/Dockerfile
+    networks:
+      clusternetwork:
+        ipv4_address: 172.16.0.11
+
   eventstoresample: 
     image: eventstoresample
     build:

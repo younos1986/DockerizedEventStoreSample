@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EventStore.Subscriber": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 ﻿using EventStoreSample.Events;
 using EventStoreSample.EventStoreConfig;
-using EventStoreSample.MongoDbConfigs;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +26,6 @@ namespace EventStoreSample
 
 
             
-            services.AddSingleton<IMongoDb, MongoDb>();
 
             services.AddSingleton<IEventStoreDbContext, EventStoreDbContext>();
             services.AddMediatR(typeof(CustomerCreatedEvent).Assembly);
