@@ -12,11 +12,14 @@ namespace EventStoreSample.EventStoreConfig
     {
         public async Task<IEventStoreConnection> GetConnection()
         {
-            IEventStoreConnection connection = EventStoreConnection.Create(
-                //"eventstore:1113",
-                new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113),
-                //new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1113),
-                nameof(EventStoreSample));
+
+            var connection = EventStoreConnection.Create("ConnectTo=tcp://admin:changeit@eventstore:1113", nameof(EventStoreSample));
+
+            //IEventStoreConnection connection = EventStoreConnection.Create(
+            //    new EventStoreConnection(new IPEndPoint("eventstore", "1113"))
+            //    //new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113),
+            //    //new IPEndPoint(IPAddress.Parse("127.0.0.1"), 1113),
+            //    nameof(EventStoreSample));
 
             await connection.ConnectAsync();
             

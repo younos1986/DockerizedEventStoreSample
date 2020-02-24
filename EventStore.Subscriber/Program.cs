@@ -1,7 +1,9 @@
 ﻿using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
 using System;
+using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 namespace EventStore.Subscriber
@@ -23,7 +25,7 @@ namespace EventStore.Subscriber
         private static void Main()
         {
 
-            var sth = new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113);
+            //var sth = new IPEndPoint(IPAddress.Parse("172.16.0.13"), 1113);
 
             var subscription = new PersistentSubscriptionClient();
             subscription.Start();
@@ -42,12 +44,15 @@ namespace EventStore.Subscriber
         public void Start()
         {
             //uncommet to enable verbose logging in client.
-            var settings = ConnectionSettings.Create(); //.EnableVerboseLogging().UseConsoleLogger();
+            //var settings = ConnectionSettings.Create(); //.EnableVerboseLogging().UseConsoleLogger();
+
+            //var ip = Dns.GetHostAddresses("eventstore").Where(a => a.AddressFamily == AddressFamily.InterNetwork).First();
+            //var connectionString = $"ConnectTo=tcp://admin:changeit@{ip}:1113";
 
             //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Loopback, DEFAULTPORT)))
-            using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Parse("172.16.0.13"), DEFAULTPORT)))
-            //using (_conn = EventStoreConnection.Create(settings, "eventstore:1113"))
-            
+            //using (_conn = EventStoreConnection.Create(settings, new IPEndPoint(ip, DEFAULTPORT)))
+            //using (_conn = EventStoreConnection.Create(settings, connectionString))
+            using (_conn = EventStoreConnection.Create("ConnectTo=tcp://admin:changeit@eventstore:1113"))
             {
                 _conn.ConnectAsync().Wait();
 
